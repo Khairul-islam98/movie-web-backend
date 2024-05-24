@@ -89,6 +89,22 @@ const deleteSingleMovie = async (req: Request, res: Response) => {
     });
   }
 };
+const getTrendingMovies = async (req: Request, res: Response) => {
+  try {
+    const result = await MovieService.getTrendingMoviesFromDB();
+    res.status(200).json({
+      success: true,
+      message: 'Trending movies fetched successfully!',
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
+      error: err,
+    });
+  }
+};
 
 export const MovieController = {
   createMovie,
@@ -96,4 +112,5 @@ export const MovieController = {
   getSingleMovie,
   updateMovie,
   deleteSingleMovie,
+  getTrendingMovies,
 };

@@ -38,10 +38,15 @@ const deleteSingleMovieFromDB = async (id: string) => {
   const result = await Movie.findOneAndDelete({ _id: id });
   return result;
 };
+const getTrendingMoviesFromDB = async () => {
+  const result = await Movie.find({ viewCount: { $gt: 5 } });
+  return result;
+};
 export const MovieService = {
   createMovieIntoDB,
   getAllMovieFromDB,
   getSingleMovieFromDB,
   updateSingleMovieFromDB,
   deleteSingleMovieFromDB,
+  getTrendingMoviesFromDB,
 };
