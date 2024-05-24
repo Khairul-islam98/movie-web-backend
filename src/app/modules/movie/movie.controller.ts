@@ -21,7 +21,9 @@ const createMovie = async (req: Request, res: Response) => {
 
 const getAllMovie = async (req: Request, res: Response) => {
   try {
-    const result = await MovieService.getAllMovieFromDB();
+    const { searchTerm } = req.query;
+    const searchQuery = searchTerm as string;
+    const result = await MovieService.getAllMovieFromDB(searchQuery);
     res.status(200).json({
       success: true,
       message: 'Movies fetched successfully!',
