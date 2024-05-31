@@ -13,8 +13,7 @@ exports.MovieController = void 0;
 const movie_service_1 = require("./movie.service");
 const createMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { movie: movieData } = req.body;
-        const result = yield movie_service_1.MovieService.createMovieIntoDB(movieData);
+        const result = yield movie_service_1.MovieService.createMovieIntoDB(req.body);
         res.status(200).json({
             success: true,
             message: 'Movie created successfully',
